@@ -1,0 +1,50 @@
+@import "@fontsource/atkinson-hyperlegible/400.css";
+@import "@fontsource/atkinson-hyperlegible/700.css";
+@import "@fontsource/atkinson-hyperlegible/400-italic.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+body {
+  @apply bg-mist text-ink font-sans antialiased;
+  font-feature-settings: "tnum" 1;
+}
+
+:focus-visible {
+  outline: 3px solid #E0A526;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 font-bold transition-colors
+           disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primary { @apply btn bg-pine text-white hover:bg-pine-dark; }
+  .btn-secondary { @apply btn border border-line bg-white text-ink hover:border-pine hover:text-pine; }
+  .btn-danger { @apply btn border border-risk-alto/40 bg-white text-risk-alto hover:bg-risk-alto hover:text-white; }
+  .btn-sm { @apply px-3 py-1.5 text-sm; }
+  .field { @apply block w-full rounded-lg border border-line bg-white px-3 py-2.5 text-ink placeholder:text-ink-soft/60
+                  focus:border-pine focus:outline-none focus:ring-2 focus:ring-pine/20; }
+  .label { @apply mb-1.5 block font-bold; }
+  .panel { @apply rounded-xl border border-line bg-white; }
+  .link { @apply font-bold text-pine underline decoration-pine/30 underline-offset-4 hover:decoration-pine; }
+}
+
+/* Comprobante: imprimir sólo el documento */
+@media print {
+  body { background: white; }
+  .no-print { display: none !important; }
+  .print-sheet { border: none !important; box-shadow: none !important; margin: 0 !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
