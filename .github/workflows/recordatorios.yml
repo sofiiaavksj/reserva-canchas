@@ -1,0 +1,14 @@
+name: Recordatorios
+on:
+  schedule:
+    - cron: "2 * * * *"
+  workflow_dispatch: {}
+jobs:
+  enviar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ejecutar la tarea de recordatorios
+        run: |
+          curl --fail --silent --show-error \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            "${{ secrets.APP_URL }}/api/cron/recordatorios"
